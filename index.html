@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Drawing Area</title>
+<!-- You can add your style here rather than in an external style sheet. -->
+<style>
+	canvas {
+	    border:5px solid #d3d3d3;
+	    background-color: #f1f1f1;
+	    display: block;
+	}
+</style>
+
+</head>
+<body>
+    <!-- DO NOT MODIFY THIS HTML -->
+    <canvas id = "myCanvas" width = "350" height = "500"></canvas>
+	<input type = "color" id = "picker"/>
+<script>
+    var canvas = document.querySelector("#myCanvas");
+	var ctx=canvas.getContext("2d");
+	canvas.height=window.innerHeight * .8;
+	canvas.width=window.innerWidth * .8;
+    var color= "red"
+    ctx.fillStyle=color;
+
+
+    draw();
+    function draw(posX,posY){
+        ctx.beginPath();
+        console.log("Im here!")
+    ctx.arc(posX, posY, 10, 0,2 * Math.PI);
+    ctx.fill();
+	}
+	
+var draw_mode=true
+myCanvas.addEventListener(
+    "mousemove", function (e){
+		if (draw_mode==true){
+        console.log(e.x)
+        console.log(e.y)
+        draw(e.x,e.y);
+		}
+	}
+)
+
+window.addEventListener(
+    "keydown", function (e){
+    console.log(e);
+// colors WORKING
+	if (e.keyCode == 82){
+	ctx.fillStyle="red"
+	}
+	if (e.keyCode == 66){
+     ctx.fillStyle="blue"
+    }
+	if (e.keyCode==89){
+	ctx.fillStyle= "yellow"
+	}
+	if (e.keyCode ==71){
+	ctx.fillStyle= "green"
+	}
+// space WORKING
+	if (e.keyCode==32){
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	}
+}
+)
+window.addEventListener(
+// arrows FIX
+	"keydown", function (e){
+// UP ARROW
+if (e.keyCode ==38){
+	draw_mode=false;
+	}
+// DOWN ARROW
+	if (e.keyCode ==40){
+	draw_mode=true;
+	}
+}
+)
+// color WORKING
+picker.onchange = function(){
+	console.log(this.value)
+	ctx.fillStyle=this.value;
+}
+</script>
+</body>
+</html>
