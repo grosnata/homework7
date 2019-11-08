@@ -24,12 +24,12 @@
     var color= "red"
     ctx.fillStyle=color;
 
-
     draw();
     function draw(posX,posY){
         ctx.beginPath();
         console.log("Im here!")
-    ctx.arc(posX, posY, 10, 0,2 * Math.PI);
+    // ctx.arc(posX, posY, 10, 0,2 * Math.PI);
+	ctx.arc(posX - (canvas.offsetLeft + 5), posY - (canvas.offsetTop + 5), 10, 0, 2 * Math.PI);
     ctx.fill();
 	}
 	
@@ -67,7 +67,6 @@ window.addEventListener(
 }
 )
 window.addEventListener(
-// arrows FIX
 	"keydown", function (e){
 // UP ARROW
 if (e.keyCode ==38){
